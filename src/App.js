@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import Switch from "react-switch";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import {
-  faCaretLeft,
-  faCaretRight,
-  faMap,
-  faInfo,
-  faSign,
-  faMedkit
-} from "@fortawesome/free-solid-svg-icons";
-
-import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
-import ReactTooltip from "react-tooltip";
+  BrowserRouter as Router,
+  useLocation,
+  NavLink
+} from "react-router-dom";
 import CambiarComponente from "./containers/CambiarComponente";
+
+import "./App.css";
 
 // Firebase config object!
 
@@ -59,78 +52,80 @@ function useQuery() {
 
 function QueryParamsDemo() {
   let query = useQuery();
-  const [darkMode, changeMode] = useState(
-    JSON.parse(localStorage.getItem("mode")) || false
-  );
-  const [show, setShow] = useState(true);
-  useEffect(() => {
-    localStorage.setItem("mode", JSON.stringify(darkMode));
-  }, [darkMode]);
+
+  document.body.style.backgroundColor = "black";
+  document.body.style.color = "white";
 
   //List of links for the reports.
 
   const links = [
-    { name: "Mapa", query: "mapa", icon: faMap },
-    { name: "Informacion General", query: "informacion", icon: faInfo },
-    { name: "Indicadores", query: "indicadores", icon: faSign },
-    { name: "Sintomas", query: "sintomas", icon: faMedkit }
+    {
+      name: "Mapa de Panama",
+      query: "MapaPanama",
+      url:
+        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+    },
+    {
+      name: "Indicadores Totales",
+      query: "IndicadoresTotales",
+      url:
+        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+    },
+    {
+      name: "Indicadores de Variacion",
+      query: "IndicadoresVariacion",
+      url:
+        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+    },
+    {
+      name: "Mapa LATAM",
+      query: "MapaLatam",
+      url:
+        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+    },
+    {
+      name: "Tendencia",
+      query: "Tendencia",
+      url:
+        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+    },
+    {
+      name: "Mapa por Region",
+      query: "MapaPorRegion",
+      url:
+        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+    }
   ];
 
   return (
     <>
-      <div id="wrapper" className={`bg-${darkMode ? "dark" : "light"}`}>
-        <div id="nav" className={`bg-secondary text-white`}>
-          <div className="clearfix">
-            {show && <h3>Reports</h3>}
-            <ul className="nav nav-pills flex-column">
-              {links.map((link, i) => (
-                <li key={i} className="nav-item">
-                  <Link
-                    className={`nav-link text-white ${
-                      query.get("report") === link.query ? "active" : ""
-                    }`}
-                    to={`?report=${link.query}`}
-                    data-tip={!show ? link.name : ""}
-                  >
-                    <FontAwesomeIcon icon={link.icon} />
-                    {show && ` ${link.name}`}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <hr />
-            {show && (
-              <div className="container text-center">
-                <h6>Modo Oscuro</h6>
-                <Switch
-                  onColor="#000000"
-                  checked={darkMode}
-                  onChange={() => changeMode(!darkMode)}
-                  id="normal-switch"
-                  width={120}
-                />
-              </div>
-            )}
-            <div className={`text-${show ? "right" : "center"} mt-5`}>
-              <button
-                className="btn btn-secondary"
-                onClick={() => setShow(!show)}
-              >
-                <FontAwesomeIcon icon={show ? faCaretLeft : faCaretRight} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          className={`container-fluid bg-${
-            darkMode ? "dark text-white" : "light"
-          } overflow-auto`}
-          style={{ position: "relative" }}
-        >
-          <CambiarComponente darkMode={darkMode} report={query.get("report")} />
-        </div>
+      <div className="container text-center">
+        <h1>COVID-19 Panama</h1>
+        <h1>Redes Sociales</h1>
       </div>
-      <ReactTooltip place="right" effect="solid" />
+      <br />
+      <ul className="nav justify-content-center">
+        {links.map((link, index) => {
+          return (
+            <li key={index} className="nav-item">
+              <NavLink
+                className={
+                  query.get("report") === link.query
+                    ? "btn btn-secondary"
+                    : `nav-link`
+                }
+                to={`?report=${link.query}`}
+              >
+                {link.name}
+              </NavLink>
+            </li>
+          );
+        })}
+      </ul>
+      <br />
+      <div style={{ height: "100vh" }}>
+        <CambiarComponente links={links} report={query.get("report")} />
+      </div>
     </>
   );
 }

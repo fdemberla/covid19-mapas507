@@ -1,10 +1,17 @@
 import React from "react";
+import IframeResizer from "iframe-resizer-react";
 
-const Mapa = () => {
+const Mapa = ({ url }) => {
   return (
-    <div>
-      <h1>Aqui van: Los Mapas</h1>
-    </div>
+    <IframeResizer
+      log
+      src={url}
+      style={{
+        width: "1px",
+        minWidth: "100%",
+        height: "100vh"
+      }}
+    />
   );
 };
 
