@@ -1,13 +1,11 @@
 import React from "react";
 
-const PaginaPrincipal = ({ darkMode }) => {
+const PaginaPrincipal = () => {
   return (
     <div className="jumbotron jumbotron-fluid bg-dark">
       <div className="container">
-        <h1 className="display-4">Bienvenidos!</h1>
-        <p className="lead">
-          Seleccione uno de los enlaces en la barra superior!
-        </p>
+        <h1 className="display-4">Proximamente!</h1>
+        <p className="lead">En construccion.</p>
       </div>
     </div>
   );

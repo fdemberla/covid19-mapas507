@@ -1,6 +1,6 @@
 import React from "react";
 import Mapa from "../components/Mapa";
-import PaginaPrincipal from "../components/PaginaPrincipal";
+import { Redirect } from "react-router-dom";
 
 const CambiarComponente = ({ links, report }) => {
   return report ? (
@@ -8,7 +8,7 @@ const CambiarComponente = ({ links, report }) => {
       .filter(query => query.query === report)
       .map((result, i) => <Mapa key={i} url={result.url} />)
   ) : (
-    <PaginaPrincipal />
+    <Redirect to={{ search: "?report=MapaPanama" }} />
   );
 };
 

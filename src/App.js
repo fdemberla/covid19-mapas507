@@ -6,6 +6,9 @@ import {
 } from "react-router-dom";
 import CambiarComponente from "./containers/CambiarComponente";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+
 import "./App.css";
 
 // Firebase config object!
@@ -63,45 +66,49 @@ function QueryParamsDemo() {
       name: "Mapa de Panama",
       query: "MapaPanama",
       url:
-        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+        "https://covid19mapas507.maps.arcgis.com/apps/Minimalist/index.html?appid=305371ffbcec4395a80d5e61c2d23295  "
     },
     {
       name: "Indicadores Totales",
       query: "IndicadoresTotales",
       url:
-        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+        "https://covid19mapas507.maps.arcgis.com/apps/opsdashboard/index.html#/1aae66bb3686454296682a05ec102349"
     },
     {
       name: "Indicadores de Variacion",
       query: "IndicadoresVariacion",
-      url:
-        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+      url: "con"
     },
     {
       name: "Mapa LATAM",
       query: "MapaLatam",
-      url:
-        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+      url: "con"
     },
     {
       name: "Tendencia",
       query: "Tendencia",
-      url:
-        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+      url: "con"
     },
     {
       name: "Mapa por Region",
       query: "MapaPorRegion",
-      url:
-        "https://maps.arcgis.com/apps/MapSeries/index.html?appid=253d4d4684784925879d536150427f02"
+      url: "con"
     }
   ];
 
   return (
     <>
       <div className="container text-center">
-        <h1>COVID-19 Panama</h1>
-        <h1>Redes Sociales</h1>
+        <h1>
+          COVID-19 Panamá{" "}
+          <a
+            href="https://www.instagram.com/covid19_mapas507/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        </h1>
       </div>
       <br />
       <ul className="nav justify-content-center">
