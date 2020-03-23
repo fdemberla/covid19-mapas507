@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   useLocation,
@@ -54,6 +54,7 @@ function useQuery() {
 }
 
 function QueryParamsDemo() {
+  const [show, setShow] = useState(false);
   let query = useQuery();
 
   document.body.style.backgroundColor = "black";
@@ -75,64 +76,83 @@ function QueryParamsDemo() {
         "https://covid19mapas507.maps.arcgis.com/apps/opsdashboard/index.html#/1aae66bb3686454296682a05ec102349"
     },
     {
-      name: "Indicadores de Variacion",
-      query: "IndicadoresVariacion",
-      url: "con"
-    },
-    {
-      name: "Mapa LATAM",
-      query: "MapaLatam",
-      url: "con"
-    },
-    {
-      name: "Tendencia",
-      query: "Tendencia",
-      url: "con"
-    },
-    {
-      name: "Mapa por Region",
-      query: "MapaPorRegion",
-      url: "con"
+      name: "Mapa Mundial",
+      query: "MapaMundial",
+      url:
+        "https://covid19mapas507.maps.arcgis.com/apps/Minimalist/index.html?appid=42bd7037b4694a94953ef5eb16727541"
     }
   ];
 
   return (
-    <>
-      <div className="container text-center">
-        <h1>
-          COVID-19 Panamá{" "}
-          <a
-            href="https://www.instagram.com/covid19_mapas507/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-        </h1>
-      </div>
-      <br />
-      <ul className="nav justify-content-center">
-        {links.map((link, index) => {
-          return (
-            <li key={index} className="nav-item">
-              <NavLink
-                className={
-                  query.get("report") === link.query
-                    ? "btn btn-secondary"
-                    : `nav-link`
-                }
-                to={`?report=${link.query}`}
-              >
-                {link.name}
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
-      <br />
-      <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh" }}>
+      <div style={{ height: "90vh" }}>
         <CambiarComponente links={links} report={query.get("report")} />
       </div>
-    </>
+      <nav className="navbar fixed-bottom navbar-dark bg-dark">
+        <a className="navbar-brand" href="/">
+          @covid19_mapas507
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          onClick={() => setShow(!show)}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div
+          className={`${show ? "" : "collapse"} navbar-collapse`}
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav mr-auto">
+            {links.map((link, index) => {
+              return (
+                <li key={index} className="nav-item">
+                  <NavLink
+                    onClick={() => setShow(false)}
+                    className={
+                      query.get("report") === link.query
+                        ? "btn btn-primary"
+                        : `nav-link`
+                    }
+                    to={`?report=${link.query}`}
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              );
+            })}
+            <li className="nav-item">
+              <NavLink
+                onClick={() => setShow(false)}
+                className={
+                  query.get("report") === "Tendencia"
+                    ? "btn btn-primary"
+                    : `nav-link`
+                }
+                to={`?report=Tendencia`}
+              >
+                Tendencia
+              </NavLink>
+            </li>
+            <hr />
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="https://www.instagram.com/covid19_mapas507/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faInstagram} /> Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   );
 }

@@ -10,7 +10,7 @@ const Mapa = ({ url }) => {
       style={{
         width: "1px",
         minWidth: "100%",
-        height: "100vh"
+        height: "85vh"
       }}
     />
   ) : (
