@@ -5,6 +5,7 @@
 /.pnp
 /src/.firebase
 .pnp.js
+/trends
 
 # testing
 /coverage

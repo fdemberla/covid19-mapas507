@@ -54,7 +54,7 @@ function QueryParamsDemo() {
 
   const links = [
     {
-      name: "Mapa de Panama",
+      name: "Mapa de Panamá",
       query: "MapaPanama",
       url:
         "https://covid19mapas507.maps.arcgis.com/apps/Minimalist/index.html?appid=305371ffbcec4395a80d5e61c2d23295  "
@@ -75,24 +75,17 @@ function QueryParamsDemo() {
 
   return (
     <div style={{ height: "100vh" }}>
-      <div style={{ height: "90vh" }}>
-        <CambiarComponente links={links} report={query.get("report")} />
-      </div>
-      <nav className="navbar fixed-bottom navbar-dark bg-dark">
+      <nav className="navbar top navbar-dark bg-dark">
         <a className="navbar-brand" href="/">
           @covid19_mapas507
         </a>
         <button
-          className="navbar-toggler"
+          className="btn btn-danger"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
           aria-label="Toggle navigation"
           onClick={() => setShow(!show)}
         >
-          <span className="navbar-toggler-icon"></span>
+          Menú
         </button>
         <div
           className={`${show ? "" : "collapse"} navbar-collapse`}
@@ -129,7 +122,6 @@ function QueryParamsDemo() {
                 Tendencia
               </NavLink>
             </li>
-            <hr />
             <li className="nav-item">
               <a
                 className="nav-link"
@@ -143,6 +135,9 @@ function QueryParamsDemo() {
           </ul>
         </div>
       </nav>
+      <div style={{ height: "90vh" }}>
+        <CambiarComponente links={links} report={query.get("report")} />
+      </div>
     </div>
   );
 }
