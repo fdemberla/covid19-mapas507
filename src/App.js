@@ -8,23 +8,13 @@ import CambiarComponente from "./containers/CambiarComponente";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import firebaseConfig from "./.firebase/firebaseConfig.js";
 
 import "./App.css";
 
 // Firebase config object!
 
 import * as firebase from "firebase/app";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD7BRm5Y7gwaMn1LUTkN-0VKtP3hlM3fDU",
-  authDomain: "covid19-mapas507.firebaseapp.com",
-  databaseURL: "https://covid19-mapas507.firebaseio.com",
-  projectId: "covid19-mapas507",
-  storageBucket: "covid19-mapas507.appspot.com",
-  messagingSenderId: "611311004955",
-  appId: "1:611311004955:web:9b209e03aaa1ca4f1937be",
-  measurementId: "G-BNLL51PZ6R"
-};
 
 firebase.initializeApp(firebaseConfig);
 
