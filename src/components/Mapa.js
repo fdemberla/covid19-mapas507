@@ -1,9 +1,8 @@
 import React from "react";
 import IframeResizer from "iframe-resizer-react";
-import PaginaPrincipal from "./PaginaPrincipal";
 
 const Mapa = ({ url }) => {
-  return url !== "con" ? (
+  return (
     <IframeResizer
       log
       src={url}
@@ -13,8 +12,6 @@ const Mapa = ({ url }) => {
         height: "85vh"
       }}
     />
-  ) : (
-    <PaginaPrincipal />
   );
 };
 

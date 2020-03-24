@@ -5,7 +5,6 @@ import {
   NavLink
 } from "react-router-dom";
 import CambiarComponente from "./containers/CambiarComponente";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import firebaseConfig from "./.firebase/firebaseConfig.js";
@@ -70,6 +69,12 @@ function QueryParamsDemo() {
       query: "MapaMundial",
       url:
         "https://covid19mapas507.maps.arcgis.com/apps/Minimalist/index.html?appid=42bd7037b4694a94953ef5eb16727541"
+    },
+    {
+      name: "Tendencia",
+      query: "Tendencia",
+      url:
+        "https://covid19mapas507.maps.arcgis.com/apps/opsdashboard/index.html#/0f4e4c1894ca4db88c91e6c49501e564"
     }
   ];
 
@@ -109,19 +114,6 @@ function QueryParamsDemo() {
                 </li>
               );
             })}
-            <li className="nav-item">
-              <NavLink
-                onClick={() => setShow(false)}
-                className={
-                  query.get("report") === "Tendencia"
-                    ? "btn btn-primary"
-                    : `nav-link`
-                }
-                to={`?report=Tendencia`}
-              >
-                Tendencia
-              </NavLink>
-            </li>
             <li className="nav-item">
               <a
                 className="nav-link"
